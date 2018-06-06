@@ -40,17 +40,17 @@ var (
 	rootDir     = flag.String("root", "", "root directory for storage of container state")
 	logFilename = flag.String("log", "", "file path where internal debug information is written, default is stdout")
 	logFormat   = flag.String("log-format", "text", "log format: text (default) or json")
-	debug       = flag.Bool("debug", false, "enable debug logging")
+	debug       = flag.Bool("debug", true, "enable debug logging")
 
 	// These flags are unique to runsc, and are used to configure parts of the
 	// system that are not covered by the runtime spec.
 
 	// Debugging flags.
-	debugLogDir = flag.String("debug-log-dir", "", "additional location for logs. It creates individual log files per command")
+	debugLogDir = flag.String("debug-log-dir", "/tmp/runsc", "additional location for logs. It creates individual log files per command")
 	logPackets  = flag.Bool("log-packets", false, "enable network packet logging")
 
 	// Debugging flags: strace related
-	strace         = flag.Bool("strace", false, "enable strace")
+	strace         = flag.Bool("strace", true, "enable strace")
 	straceSyscalls = flag.String("strace-syscalls", "", "comma-separated list of syscalls to trace. If --strace is true and this list is empty, then all syscalls will be traced.")
 	straceLogSize  = flag.Uint("strace-log-size", 1024, "default size (in bytes) to log data argument blobs")
 

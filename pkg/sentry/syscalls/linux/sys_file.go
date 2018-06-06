@@ -524,6 +524,9 @@ func Ioctl(t *kernel.Task, args arch.SyscallArguments) (uintptr, *kernel.Syscall
 		file.SetFlags(flags.Settable())
 		return 0, nil, nil
 
+	case 0x5452: // FAIOSYNC
+		return 0, nil, nil
+
 	default:
 		ret, err := file.FileOperations.Ioctl(t, t.MemoryManager(), args)
 		if err != nil {
@@ -850,6 +853,9 @@ func Fcntl(t *kernel.Task, args arch.SyscallArguments) (uintptr, *kernel.Syscall
 		default:
 			return 0, nil, syserror.EINVAL
 		}
+	case syscall.F_SETOWN:
+		return 0, nil, nil
+
 	default:
 		// Everything else is not yet supported.
 		return 0, nil, syserror.EINVAL
